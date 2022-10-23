@@ -6,25 +6,6 @@ jobs:
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2
-      - name: Get changed files
-        id: cfs
-        uses: tj-actions/changed-files@v33
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.cfs.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
-      - name: check file changed
-        id: changed-files
-        uses: tj-actions/changed-files@v33
-        with:
-          files: |
-            ${{ github.actor }}.txt
-      - name: error if other change
-        if: steps.changed-files.outputs.only_changed == 'false'
-        run: |
-          echo "Only ${{ github.actor }}.txt file can be changed"
-          exit 1
       - name: setup python
         uses: actions/setup-python@v4
         with:
