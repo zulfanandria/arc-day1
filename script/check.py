@@ -9,3 +9,4 @@ def test_pr(name):
     with open(filename) as file:
         content = file.read()
         assert name in content
+        assert "arc" in content
